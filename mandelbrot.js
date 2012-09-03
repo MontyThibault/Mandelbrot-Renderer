@@ -107,6 +107,7 @@
 				rx = (x1 - settings.posX) * scale;
 				ry = (y - settings.posY) * scale;
 
+				// This is where the magic happens
 				c.r = rx;
 				c.i = ry;
 				z.r = z.i = 0;
@@ -155,6 +156,8 @@
 		}
 	}
 
+	// Will split up the whole frame into ~300px by ~300px regions to render
+	// one at a time. This is used for higher resolutions to increase responsiveness.
 	function calculateRegions() {
 		var regions = [];
 

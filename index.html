@@ -8,11 +8,41 @@
 				margin: 0px;
 				overflow: hidden;
 			}
+
+			p {
+				position: absolute;
+				top: 0px;
+				width: 100%;
+				margin: 0px;
+				padding: 5px;
+				background: #222222;
+				color: #BBBBBB;
+				text-align: center;
+				border-bottom: 2px solid #555555;
+			}
+
+			p > a {
+				color: #91ff97;
+				text-decoration: none;
+				text-shadow: 0px 1px 1px #406e43;
+			}
+			p > a:hover {
+				color: #d8ffda;
+				-webkit-transition: color 0.5s;
+			}
+
+			.spinner {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+			}
+
 		</style>
 	</head>
 	<body>
 		<canvas>Your browser does not support canvas.</canvas>
 
+		<p>Canvas-based Mandelbrot Set renderer. Visit <a href='https://github.com/MontyThibault/Mandelbrot-Renderer'>this page</a> for the source.</p>
 		<script src="dat.gui.min.js"></script>
 		<script src='mandelbrot.js'></script>
 	</body>
