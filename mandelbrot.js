@@ -74,6 +74,7 @@
 			update = true;
 			window.abort = true;
 		};
+		window.onresize();
 
 		(function loop() {
 
@@ -94,6 +95,8 @@
 	};
 
 	function renderRegion(settings, x1, y1, x2, y2) {
+		context.clearRect(x1, y1, x2, y2);
+
 		settings.detail = Math.floor(settings.detail);
 		var scale = Math.pow(10, settings.scale),
 			tolerance = Math.pow(10, settings.tolerance);
@@ -112,21 +115,21 @@
 				c.i = ry;
 				z.r = z.i = 0;
 
-				l = 0;
 				for(var i = 0; i < settings.iterations; i++) {
 					z.multiply(z).add(c);
 
 					if(Math.pow(z.r, 2) + Math.pow(z.i, 2) < tolerance) {
 						l = i / settings.iterations;
+
+						// Pixel colors
+						l = Math.floor(l * 0xFF);
+						context.fillStyle = 'rgb(' + l + ',' + l + ',' + l + ')';
+
+						context.fillRect(x1, y, settings.detail, settings.detail);
+
 						break;
 					}
 				}
-
-				// Pixel colors
-				l = Math.floor(l * 0xFF);
-				context.fillStyle = 'rgb(' + l + ',' + l + ',' + l + ')';
-
-				context.fillRect(x1, y, settings.detail, settings.detail);
 			}
 		}
 	}
